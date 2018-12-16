@@ -13,3 +13,15 @@ a {
     text-decoration: none;
   }
 }
+
+.todo-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  .todo-item {
+    &.completed {
+      color: #737373;
+      text-decoration: line-through;
+    }
+  }
+}
