@@ -1,6 +1,6 @@
 import { TodoList } from '../todoList';
 import './welcome.scss';
-  
+
 export class Welcome extends Component {
   state = {
     userName: 'Oksana Blonskaya',
@@ -27,12 +27,11 @@ export class Welcome extends Component {
           <div>In progress: <strong>{inprogress}</strong></div>
           <div>Waiting: <strong>{waiting}</strong></div>
         </div>
-        <br />
-        <br />
         <div>
           <a href="/task-list">Go to the task list</a>
-          <TodoList />
         </div>
+        <br />
+        <TodoList />
       </div>
     );
   }
