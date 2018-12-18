@@ -10,12 +10,12 @@
     &:hover {
       background: rgba(120, 147, 204, 0.44);
     }
-    &.inprogress {
-      text-decoration: underline;
-    }
     &.completed {
       color: #737373;
       text-decoration: line-through;
+    }
+    &.inprogress {
+      text-decoration: underline;
     }
   }
 }

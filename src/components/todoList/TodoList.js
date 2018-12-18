@@ -19,24 +19,22 @@ export class TodoList extends Component {
 
   deleteTodo = (id) => {
     const { todos } = this.state;
-    todos.splice(id - 1, 1);
     this.setState({
-      todos
+      todos: todos.filter(todo => todo.id !== id),
+      initialTodos: todos.filter(todo => todo.id !== id)
     });
   }
-
 
   completeTodo = (todoId) => {
     const { todos } = this.state;
-    const { completed, ...props } = todos.find(item => item.id === todoId);
+    const item = todos.find(item => item.id === todoId);
     this.setState({
       todos: [
         ...todos.slice(0, todoId - 1),
-        { completed: true, ...props },
+        { ...item, completed: true, inprogress: false },
         ...todos.slice(todoId)]
     });
   }
-
 
   startTodo(todoId) {
     const { todos } = this.state;
@@ -81,10 +79,9 @@ export class TodoList extends Component {
             todos.map((todo, index) => (
               <li
                 key={todo.id}
-                className={`
-              todo-item
-              ${todo.completed ? 'completed' : ''}
-              ${todo.inprogress ? 'inprogress' : ''}
+                className={`todo-item
+                ${todo.completed ? 'completed' : ''}
+                ${todo.inprogress ? 'inprogress' : ''}
               `}
               >
                 { todo.id }. { todo.title } {index + 1}
