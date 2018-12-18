@@ -22,9 +22,11 @@ export class TodoList extends Component {
 
   deleteTodo = (id) => {
     const { todos } = this.state;
+    const filteredTodos = todos.filter(todo => todo.id !== id);
     this.setState({
-      todos: todos.filter(todo => todo.id !== id)
+      todos: filteredTodos
     });
+    this.originTodos = filteredTodos;
   }
 
   completeTodo = (todoId) => {
