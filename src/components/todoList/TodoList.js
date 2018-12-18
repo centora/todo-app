@@ -4,24 +4,26 @@ import './todoList.scss';
 export class TodoList extends Component {
   state = {
     todos: [],
-    initialTodos: [],
     filterValue: ''
   }
+
+  originTodos = [];
 
   componentDidMount() {
     fetch('https://jsonplaceholder.typicode.com/todos')
       .then(response => response.json())
-      .then(todos => this.setState({
-        todos: todos.slice(0, 20),
-        initialTodos: todos.slice(0, 20)
-      }));
+      .then((todos) => {
+        this.originTodos = todos.slice(0, 20);
+        this.setState({
+          todos: this.originTodos
+        });
+      });
   }
 
   deleteTodo = (id) => {
     const { todos } = this.state;
     this.setState({
-      todos: todos.filter(todo => todo.id !== id),
-      initialTodos: todos.filter(todo => todo.id !== id)
+      todos: todos.filter(todo => todo.id !== id)
     });
   }
 
@@ -53,9 +55,8 @@ export class TodoList extends Component {
   }
 
   filterTodos = (text) => {
-    const { initialTodos } = this.state;
     this.setState({
-      todos: initialTodos.filter(item => item.title.includes(text))
+      todos: this.originTodos.filter(item => item.title.includes(text))
     });
   }
 
