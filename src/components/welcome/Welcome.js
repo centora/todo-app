@@ -1,4 +1,3 @@
-import { TodoList } from '../todoList';
 import './welcome.scss';
 
 export class Welcome extends Component {
@@ -30,8 +29,6 @@ export class Welcome extends Component {
         <div>
           <a href="/task-list">Go to the task list</a>
         </div>
-        <br />
-        <TodoList />
       </div>
     );
   }

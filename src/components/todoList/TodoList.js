@@ -64,7 +64,7 @@ export class TodoList extends Component {
   render() {
     const { todos, filterValue } = this.state;
     return (
-      <div>
+      <div className="todo-container">
         <div>
           <input
             type="text"
