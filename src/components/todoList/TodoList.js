@@ -28,22 +28,20 @@ export class TodoList extends Component {
   completeTodo = (todoId) => {
     const { todos } = this.state;
     const item = todos.find(item => item.id === todoId);
+    item.completed = true;
     this.setState({
-      todos: [
-        ...todos.slice(0, todoId - 1),
-        { ...item, completed: true, inprogress: false },
-        ...todos.slice(todoId)]
+      todos: [...todos]
     });
   }
 
   startTodo(todoId) {
     const { todos } = this.state;
-    const { ...props } = todos.find(item => item.id === todoId);
+    const item = todos.find(item => item.id === todoId);
+    if (!item.completed) {
+      item.inprogress = true;
+    }
     this.setState({
-      todos: [
-        ...todos.slice(0, todoId - 1),
-        { inprogress: true, ...props },
-        ...todos.slice(todoId)]
+      todos: [...todos]
     });
   }
 
