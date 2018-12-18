@@ -27,6 +27,8 @@ export class Welcome extends Component {
           <div>In progress: <strong>{inprogress}</strong></div>
           <div>Waiting: <strong>{waiting}</strong></div>
         </div>
+        <br />
+        <br />
         <div>
           <a href="/task-list">Go to the task list</a>
           <TodoList />
