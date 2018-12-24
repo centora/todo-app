@@ -1,5 +1,5 @@
 import './welcome.scss';
-  
+
 export class Welcome extends Component {
   state = {
     userName: 'Oksana Blonskaya',
