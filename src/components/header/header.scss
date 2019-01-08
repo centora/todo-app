@@ -1,0 +1,25 @@
+@import "../../css/variables";
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: $guiter;
+  height: 100px;
+  font-size: 20px;
+  color: #fff;
+}
+
+.logo {
+  &, &:hover, &:focus {
+    text-decoration: none;
+    outline: none;
+  }
+
+  color: $logoColor;
+  font-weight: bold;
+  font-size: 20px;
+  &:hover {
+    color: lighten($logoColor, 10);
+  }
+}

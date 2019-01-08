@@ -5,8 +5,11 @@ const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const args = process.argv;
 const isFileCSS = args.includes('--styles');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
-const plugins =[
+const images = ['jpeg', 'png', 'svg', 'gif'];
+
+const plugins = [
   new HtmlPlugin({
     title: package.name,
     version: package.version,
@@ -18,7 +21,13 @@ const plugins =[
   new webpack.ProvidePlugin({
     React: 'react',
     Component: ['react', 'Component']
-  })
+  }),
+  new CopyWebpackPlugin(
+    images.map(ext => ({
+      from: `**/*/*.${ext}`,
+      to: 'images/[name].[ext]'
+    }))
+  )
 ];
 
 if (isFileCSS) {
@@ -65,6 +74,29 @@ module.exports = {
           }
         }
       },
+      {
+        test: /\.(png|jpg|jpeg|gif|svg)$/i,
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              limit: 8000,
+              name: 'images/[name].[ext]'
+            }
+          }
+        ]
+      },
+      /*{
+        test: /\.(png|jpg|jpeg|gif|svg)$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[name].[ext]'
+            }
+          },
+        ],
+      },*/
       {
         enforce: 'pre',
         test: /\.js$/,

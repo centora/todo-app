@@ -1,16 +1,11 @@
 import ReactDom from 'react-dom';
 import './css/app.scss';
 
-import { Welcome } from './components/welcome';
-import { Categories } from './components/categories';
-import { TodoList } from './components/todoList';
-
+import { AppComponent } from './appComponent';
 
 const App = (
   <>
-    <Welcome />
-    <Categories />
-    <TodoList />
+    <AppComponent />
   </>
 );
 
