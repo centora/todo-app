@@ -6,7 +6,7 @@ export const Header = ({ user }) => (
     <a href="/" className="logo">
       <img src="images/logo.png" alt="Todo" />
     </a>
-    <Nav list={['Tasks', 'Tasks']} />
+    <Nav list={['Home', 'Tasks']} />
     <div className="user-box">
       {
         user ? (
