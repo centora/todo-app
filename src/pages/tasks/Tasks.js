@@ -3,11 +3,13 @@ import { Tabs, Tab } from '../../components/tabs';
 
 const weekDays = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'];
 const date = new Date();
-const currDay = date.getDay();
+const currDay = date.getDay() - 1;
 
 class Tasks extends Component {
   render() {
     const { days } = this.props;
+    const sunday = days.shift();
+    days.push(sunday);
     return (
       <>
         <Tabs selectedIndex={currDay}>
