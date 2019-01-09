@@ -10,12 +10,14 @@ export class TodoList extends Component {
   originTodos = [];
 
   componentDidMount() {
-    const { tasks } = this.props;
-    console.log(tasks);
-    this.originTodos = tasks;
-    this.setState({
-      todos: this.originTodos
-    });
+    fetch('https://jsonplaceholder.typicode.com/todos')
+      .then(response => response.json())
+      .then((todos) => {
+        this.originTodos = todos.slice(0, 20);
+        this.setState({
+          todos: this.originTodos
+        });
+      });
   }
 
   deleteTodo = (id) => {
@@ -72,22 +74,48 @@ export class TodoList extends Component {
             value={filterValue}
             onChange={this.onChange}
           />
-          <ul className="todo-list">
-            {
-              todos.map((item, index) => (
-                <li
-                  key={index}
-                  className={`todo-item
-                    ${item.done ? 'completed' : ''}
-                    ${!item.done ? 'inprogress' : ''}
-                  `}
-                >
-                  { item.id }. { item.title } {index + 1}
-                </li>
-              ))
-            }
-          </ul>
         </div>
+        <ul className="todo-list">
+          {
+            todos.map((todo, index) => (
+              <li
+                key={todo.id}
+                className={`todo-item
+                ${todo.completed ? 'completed' : ''}
+                ${todo.inprogress ? 'inprogress' : ''}
+              `}
+              >
+                { todo.id }. { todo.title } {index + 1}
+                <span className="todo-actions">
+                  <button
+                    title="Delete"
+                    className="btn-warning"
+                    onClick={() => this.deleteTodo(todo.id)}
+                    type="button"
+                  >
+                    X
+                  </button>
+                  <button
+                    title="Set as done"
+                    className="btn-success"
+                    onClick={() => this.completeTodo(todo.id)}
+                    type="button"
+                  >
+                    V
+                  </button>
+                  <button
+                    title="Set as in progress"
+                    className="btn-primary"
+                    onClick={() => this.startTodo(todo.id)}
+                    type="button"
+                  >
+                    ~
+                  </button>
+                </span>
+              </li>
+            ))
+          }
+        </ul>
       </div>
     );
   }

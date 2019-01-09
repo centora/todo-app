@@ -1,13 +1,11 @@
 .todo-container {
-  width: 600px;
-  margin: 20px auto;
+
 }
 
 .todo-list {
   list-style: none;
   padding: 0;
   margin: 0;
-  background: #eee;
   .todo-item {
     margin: 5px 0;
     padding: 5px;
@@ -17,7 +15,7 @@
       background: rgba(120, 147, 204, 0.44);
     }
     &.completed {
-      color: #737373;
+      color: #b5b5b5;
       text-decoration: line-through;
     }
     &.inprogress {
