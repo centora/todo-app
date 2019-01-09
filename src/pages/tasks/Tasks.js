@@ -16,13 +16,47 @@ class Tasks extends Component {
           {
             days.map((tasks, index) => (
               <Tab title={weekDays[index]} key={index}>
-                <ul>
+                <ol className="todo-list">
                   {
-                    tasks.map(item => (
-                      <li key={item.id}>{item.title}</li>
+                    tasks.map((item, ind) => (
+                      <li
+                        key={item.id}
+                        className={`todo-item
+                          ${'done' in item && item.done ? 'completed' : ''}
+                          ${'done' in item && !item.done ? 'inprogress' : ''}
+                        `}
+                      >
+                        <span className="value">{ind + 1}. <span className="value-text">{item.title}</span></span>
+                        { !item.done && (
+                          <span className="todo-actions">
+                            <button
+                              title="Delete"
+                              className="btn-warning"
+                              type="button"
+                            >
+                              X
+                            </button>
+                            <button
+                              title="Set as done"
+                              className="btn-success"
+                              type="button"
+                            >
+                              V
+                            </button>
+                            <button
+                              title="Set as in progress"
+                              className="btn-primary"
+                              type="button"
+                            >
+                              ~
+                            </button>
+                          </span>)
+                        }
+                      </li>
                     ))
                   }
-                </ul>
+                </ol>
+                <button>Добавить новый</button>
               </Tab>
             ))
           }
