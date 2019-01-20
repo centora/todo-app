@@ -25,11 +25,15 @@ export class Tabs extends Component {
     const { selectedIndex } = this.state;
     const tabs = children.filter(child => child.type === Tab);
     const titles = tabs.map(tab => tab.props.title);
+    const currTab = tabs[selectedIndex];
+    const currTabContent = currTab.props.children;
     return (
       <div className="tabs">
         <TabNav titles={titles} selectedIndex={selectedIndex} selectTab={this.selectTab} />
         <section className="tab-content">
-          { tabs[selectedIndex].props.children }
+          {
+            tabs[selectedIndex] && currTabContent
+          }
         </section>
       </div>
     );

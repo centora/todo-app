@@ -15,7 +15,7 @@ export class AppComponent extends Component {
       .catch(() => this.setState({ loading: false }));
   }
 
-  conponentDidUpdate(prevProps, prevState) {
+  componentDidUpdate(prevProps, prevState) {
     const { user } = this.state;
     if (!prevState.user && user) {
       getInfo()
