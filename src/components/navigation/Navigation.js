@@ -1,9 +1,10 @@
+import { NavLink } from 'react-router-dom';
 import './navigation.scss';
 
 const Item = (props) => {
   const { text } = props;
   const itemRoute = `/${text.toLowerCase()}`;
-  return <li><a href={itemRoute}>{ text }</a></li>;
+  return <li><NavLink to={itemRoute} activeClassName="active">{ text }</NavLink></li>;
 };
 
 export const Nav = (props) => {

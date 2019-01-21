@@ -1,6 +1,8 @@
+import { withRouter } from 'react-router-dom';
 import { Header } from './components/header';
 import { Main } from './components/main';
 import { checkUser, getInfo } from './services';
+import { Pages } from './pages/Pages';
 
 export class AppComponent extends Component {
   state = {
@@ -29,15 +31,28 @@ export class AppComponent extends Component {
 
   render() {
     const { user, info, loading } = this.state;
+    const ConnectedHeader = withRouter(({ history }) => (
+      <Header
+        user={user}
+        history={history}
+        onLogout={this.onLogout}
+      />
+    ));
     return (
       <>
-        <Header user={user} info={info} />
+        <ConnectedHeader />
         <Main
           user={user}
           info={info}
           onLogin={this.onLogin}
           loading={loading}
-        />
+        >
+          <Pages
+            user={user}
+            info={info}
+            onLogin={this.onLogin}
+          />
+        </Main>
       </>
     );
   }

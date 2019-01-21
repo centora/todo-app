@@ -1,25 +1,38 @@
+import { Link } from 'react-router-dom';
 import { Nav } from '../navigation';
+import { logout } from '../../services';
 import './header.scss';
 
-export const Header = ({ user }) => (
-  <header className="header">
-    <a href="/" className="logo">
-      <img src="images/logo.png" alt="Todo" />
-    </a>
-    <Nav list={['Home', 'Tasks']} />
-    <div className="user-box">
-      {
-        user ? (
+export const Header = (
+  {
+    user,
+    onLogout,
+    history
+  }
+) => {
+  const onLogoutHandler = (event) => {
+    event.preventDefault();
+    logout().then(() => {
+      onLogout();
+      history.push('/');
+    });
+  };
+  return (
+    <header className="header">
+      <Link to="/" className="logo">
+        <img src="images/logo.png" alt="Todo" />
+      </Link>
+      <Nav list={['Home', 'Tasks']} />
+      <div className="user-box">
+        { user ? (
           <>
-            <span>{user.firstName}</span>
+            <Link to="/profile">
+              <span>{user.firstName}</span>
+            </Link> &nbsp; &nbsp;
+            <span><a href="#" onClick={onLogoutHandler}>Logout</a></span>
           </>
-        ) : (
-          <>
-            <span><a href="/signin">Signin</a></span>
-            <span><a href="/signup">Signup</a></span>
-          </>
-        )
-      }
-    </div>
-  </header>
-);
+        ) : <Nav list={['Signin', 'Signup']} /> }
+      </div>
+    </header>
+  );
+};
