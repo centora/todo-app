@@ -29,6 +29,10 @@ export class AppComponent extends Component {
     this.setState({ user });
   }
 
+  onLogout = () => {
+    this.setState({ user: null });
+  }
+
   render() {
     const { user, info, loading } = this.state;
     const ConnectedHeader = withRouter(({ history }) => (

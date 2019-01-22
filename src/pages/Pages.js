@@ -22,7 +22,7 @@ export const Pages = ({
             key="home"
           />,
           <Route
-            path="/taska"
+            path="/tasks"
             exact
             component={Tasks}
             key="tasks"
@@ -37,17 +37,23 @@ export const Pages = ({
         ] : [
           <Route
             path="/signin"
+            exact
             render={() => <Login onLogin={onLogin} />}
             key="signin"
           />,
           <Route
             path="/signup"
+            exact
             component={CreateUser}
             key="signup"
           />,
-          <Redirect from="/" exact to="/signin" key="initSignin" />,
-          <Redirect from="/home" to="/signin" key="homeSignin" />,
-          <Redirect from="/tasks" to="/signin" key="tasksSignin" />,
+          <Route
+            path={homePathes}
+            exact
+            render={() => <div><h1 className="main-title">Welcom to the TODO app</h1></div>}
+            key="signup"
+          />,
+          <Redirect from="/tasks" to="/home" key="tasksSignin" />,
         ]
       }
       <Route
