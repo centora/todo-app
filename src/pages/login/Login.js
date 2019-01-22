@@ -1,4 +1,4 @@
-import { login } from '../../services';
+import { login } from 'services';
 import './login.scss';
 
 export const Login = ({ onLogin }) => {

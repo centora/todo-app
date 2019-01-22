@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
+import { logout } from 'services';
 import { Nav } from '../navigation';
-import { logout } from '../../services';
 import './header.scss';
 
 export const Header = (
