@@ -8,6 +8,12 @@
   height: 100px;
   font-size: 20px;
   color: #fff;
+  a {
+    color: inherit;
+    &.active {
+      color: red;
+    }
+  }
 }
 
 .logo {
@@ -23,3 +29,4 @@
     color: lighten($logoColor, 10);
   }
 }
+
